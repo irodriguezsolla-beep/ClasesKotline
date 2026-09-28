@@ -27,5 +27,24 @@ class Aquarium(var length: Int = 100, var width: Int = 20, var height: Int = 40)
         height = (tank / (length * width)).toInt()
 
     }
+    sealed class Seal
+
+    class SeaLion : Seal()
+    class Walrus : Seal()
+
+    // Función para evaluar los tipos de Seal
+    fun matchSeal(seal: Seal): String {
+        // En una expresión 'when' con una clase sellada, Kotlin sabe cuál es la lista
+        // completa de subclases. No se necesita una rama 'else'.
+        return when(seal) {
+            is Walrus -> "walrus"
+            is SeaLion -> "sea lion"
+        }
+    }
+
+    fun main() {
+        val mySeal: Seal = Walrus()
+        println(matchSeal(mySeal)) // Imprime: walrus
+    }
 
 }
